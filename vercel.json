@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://maisonn.free.nf/api/:path*"
+    },
+    {
+      "source": "/admin/api/:path*",
+      "destination": "https://maisonn.free.nf/admin/api/:path*"
+    }
+  ]
+}

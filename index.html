@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Maison — Fine Dining Ahmednagar</title>
+<meta name="description" content="An intimate dining experience where every table tells a story. Fine dining in Ahmednagar."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: { DEFAULT:'#0a0b0d', light:'#131518', elevated:'#1a1c20' },
+        cream: { DEFAULT:'#f2edd8', dim:'#ccc4a8' },
+        gold: { DEFAULT:'#c49a3c', light:'#caa94f', dim:'#7a6a35' },
+      }
+    }
+  }
+}
+</script>
+<style>
+body { font-family:'Outfit',sans-serif; background:#0a0b0d; color:#f2edd8; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,h4 { font-family:'Playfair Display',serif; }
+.font-display { font-family:'Playfair Display',serif; }
+.font-mono-dm { font-family:'JetBrains Mono',monospace; }
+.text-gradient-gold { background:linear-gradient(135deg,#c49a3c,#d4b96a,#c49a3c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hr-gold { height:1px; background:linear-gradient(90deg,transparent,rgba(196,154,60,0.5),transparent); border:none; }
+.noise::before { content:''; position:absolute; inset:0; opacity:0.03; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); pointer-events:none; }
+.glass { background:rgba(26,28,32,0.6); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(196,154,60,0.08); }
+.glass-light { background:rgba(242,237,216,0.03); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(242,237,216,0.06); }
+.btn-premium { position:relative; overflow:hidden; padding:16px 32px; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; font-family:'Outfit',sans-serif; font-weight:500; background:linear-gradient(135deg,#b8903a,#c9a24a); color:#0a0b0d; border:none; cursor:pointer; transition:all 0.3s; text-decoration:none; display:inline-block; text-align:center; }
+.btn-premium:hover { background:linear-gradient(135deg,#c9a24a,#d4b45a); box-shadow:0 8px 32px -8px rgba(196,154,60,0.4); transform:translateY(-1px); }
+.btn-outline-premium { padding:16px 32px; font-size:11px; letter-spacing:0.25em; text-transform:uppercase; font-family:'Outfit',sans-serif; background:transparent; border:1px solid rgba(242,237,216,0.15); color:rgba(242,237,216,0.6); cursor:pointer; transition:all 0.3s; text-decoration:none; display:inline-block; text-align:center; }
+.btn-outline-premium:hover { border-color:rgba(196,154,60,0.5); color:#c49a3c; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.animate-ticker { animation:ticker 35s linear infinite; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:none} }
+.animate-fade-up { animation:fadeUp 0.8s ease both; }
+::selection { background:rgba(196,154,60,0.3); color:#f2edd8; }
+/* ── Section animations ──────────────────────────────────── */
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+@keyframes countUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.anim-left{opacity:0}.anim-right{opacity:0}.anim-scale{opacity:0}.anim-up{opacity:0}
+.anim-left.go{animation:slideInLeft 0.7s ease both}
+.anim-right.go{animation:slideInRight 0.7s ease both}
+.anim-scale.go{animation:scaleIn 0.6s ease both}
+.anim-up.go{animation:fadeUp 0.6s ease both}
+.stagger-1{animation-delay:0.05s!important}
+.stagger-2{animation-delay:0.15s!important}
+.stagger-3{animation-delay:0.25s!important}
+.stagger-4{animation-delay:0.35s!important}
+
+
+/* ── Unified Navbar ─────────────────────────────────────────── */
+.mn{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:transparent;border-bottom:1px solid transparent;transition:all .4s;}
+.mn.scrolled{background:rgba(12,13,16,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,154,60,.08);}
+.mn-logo{font-family:'Playfair Display',serif;font-size:19px;letter-spacing:.28em;background:linear-gradient(135deg,#c49a3c,#d4b96a,#c49a3c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;font-weight:500;}
+.mn-links{display:flex;align-items:center;gap:32px;}
+.mn-link{color:rgba(242,237,216,.4);font-size:10px;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;font-family:'Outfit',sans-serif;background:none;border:none;cursor:pointer;padding:0;transition:color .2s;}
+.mn-link:hover{color:rgba(242,237,216,.85);}
+.mn-link.mn-active{color:#c49a3c;}
+.mn-btn{color:#c49a3c;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'Outfit',sans-serif;background:none;border:1px solid rgba(196,154,60,.25);cursor:pointer;padding:8px 18px;transition:all .2s;text-decoration:none;display:inline-block;}
+.mn-btn:hover{border-color:#c49a3c;background:rgba(196,154,60,.06);}
+.mn-ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent;z-index:101;}
+.mn-hb{width:22px;height:2px;background:#c49a3c;border-radius:1px;transition:all .28s ease;}
+.mn-ham.open .mn-hb:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.mn-ham.open .mn-hb:nth-child(2){opacity:0;}
+.mn-ham.open .mn-hb:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mn-drawer{display:none;position:fixed;top:64px;left:0;right:0;background:#0c0d10;border-bottom:1px solid rgba(196,154,60,.12);z-index:99;padding:6px 0 18px;}
+.mn-drawer.open{display:block;}
+.mn-mi{display:block;padding:14px 28px;color:rgba(242,237,216,.4);font-size:11px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;font-family:'Outfit',sans-serif;border:none;background:none;width:100%;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:color .2s;}
+.mn-mi:hover{color:#f2edd8;}
+.mn-mi-gold{color:#c49a3c !important;}
+.mn-mi-red{color:#f87171 !important;}
+.mn-mdiv{height:1px;background:rgba(196,154,60,.08);margin:8px 24px;}
+@media(max-width:700px){.mn{padding:0 16px;}.mn-links{display:none;}.mn-ham{display:flex;}}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="mn" id="mainNav">
+  <a href="index.html" class="mn-logo">MAISON</a>
+  <div class="mn-links" id="mnLinks"></div>
+  <button class="mn-ham" id="mnHam" onclick="mnToggle()" aria-label="Menu">
+    <span class="mn-hb"></span><span class="mn-hb"></span><span class="mn-hb"></span>
+  </button>
+</nav>
+<div class="mn-drawer" id="mnDrawer">
+  <div class="mn-mdiv"></div>
+  <a href="index.html" class="mn-mi">Home</a>
+  <a href="book.html" class="mn-mi">Reserve</a>
+  <a href="menu.html" class="mn-mi">Menu</a>
+  <a href="my-bookings.html" class="mn-mi">My Bookings</a>
+  <div id="mnAdminMob"></div>
+  <div class="mn-mdiv"></div>
+  <div id="mnAuthMob"></div>
+</div>
+
+<!-- Hero -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+  <!-- ── Video background (z-0) ─────────────────────────────── -->
+  <video
+    id="heroBg"
+    autoplay muted loop playsinline
+    preload="auto"
+    poster="videos/hero-poster.jpg"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;opacity:1;transition:opacity 1.2s ease;"
+  >
+    <source id="heroSrc" src="videos/hero.mp4" type="video/mp4"/>
+  </video>
+
+  <!-- ── Heavy dark overlay — makes video dim & atmospheric (z-1) -->
+  <div style="position:absolute;inset:0;z-index:1;background:rgba(8,9,11,0.78);"></div>
+
+  <!-- ── Subtle gold radial glow on top of overlay (z-2) ──────── -->
+  <div style="position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 60%,rgba(196,154,60,0.07),transparent 65%);pointer-events:none;"></div>
+
+  <!-- ── Noise texture (z-3) ───────────────────────────────────── -->
+  <div class="absolute inset-0 noise" style="z-index:3;"></div>
+
+  <!-- ── Hero text content (z-10) ─────────────────────────────── -->
+  <div class="relative text-center px-6 animate-fade-up" style="z-index:10;">
+    <div class="font-mono-dm text-[10px] tracking-[0.6em] uppercase mb-8" style="color:rgba(196,154,60,0.55);">Est. 2018 · Ahmednagar</div>
+    <h1 class="font-display font-medium leading-[0.9] mb-6" style="font-size:clamp(60px,16vw,140px);"><span class="text-gradient-gold">Maison</span></h1>
+    <div class="hr-gold w-20 mx-auto mb-8"></div>
+    <p style="color:rgba(242,237,216,0.38);font-size:clamp(14px,2vw,17px);max-width:380px;margin:0 auto 48px;line-height:1.7;font-weight:300;letter-spacing:0.04em;">An intimate dining experience where every table tells a story</p>
+    <div class="flex gap-4 flex-wrap justify-center">
+      <a href="book.html" class="btn-premium">Reserve a Table</a>
+      <a href="#about" onclick="event.preventDefault();document.getElementById('about').scrollIntoView({behavior:'smooth'});return false;" class="btn-outline-premium">Our Story</a>
+    </div>
+  </div>
+
+  <!-- ── Scroll indicator (z-10) ───────────────────────────────── -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3" style="z-index:10;">
+    <span class="font-mono-dm text-[9px] tracking-[0.5em] uppercase" style="color:rgba(242,237,216,0.18);">Scroll</span>
+    <div class="w-px h-10 animate-pulse" style="background:linear-gradient(to bottom,rgba(196,154,60,0.35),transparent);"></div>
+  </div>
+
+  <!-- ── Corner accents (z-10) ─────────────────────────────────── -->
+  <div class="absolute top-8 left-8 w-16 h-16" style="border-left:1px solid rgba(196,154,60,0.1);border-top:1px solid rgba(196,154,60,0.1);z-index:10;"></div>
+  <div class="absolute bottom-8 right-8 w-16 h-16" style="border-right:1px solid rgba(196,154,60,0.1);border-bottom:1px solid rgba(196,154,60,0.1);z-index:10;"></div>
+</section>
+
+
+
+<script>
+const API = "";
+</script>
+<script>
+(function(){
+  var v = document.getElementById('heroBg');
+  if (!v) return;
+  var retries = 0;
+  var maxRetries = 5;
+
+  function tryPlay() {
+    v.load();
+    var p = v.play();
+    if (p !== undefined) {
+      p.catch(function() {
+        if (retries < maxRetries) {
+          retries++;
+          setTimeout(tryPlay, 2000); // retry every 2 seconds
+        }
+      });
+    }
+  }
+
+  // If video stalls or errors, retry
+  v.addEventListener('error', function() {
+    if (retries < maxRetries) {
+      retries++;
+      setTimeout(tryPlay, 2000);
+    }
+  });
+
+  v.addEventListener('stalled', function() {
+    if (retries < maxRetries) {
+      retries++;
+      setTimeout(tryPlay, 2000);
+    }
+  });
+
+  // Start
+  tryPlay();
+})();
+</script>
+
+<!-- Menu Teaser -->
+<section class="relative py-[clamp(48px,8vw,80px)] px-6">
+  <div class="absolute inset-0" style="background:linear-gradient(180deg,transparent,rgba(26,28,32,0.5),transparent)"></div>
+  <div class="absolute inset-0 noise"></div>
+  <div class="max-w-[1100px] mx-auto relative z-10">
+    <div class="text-center mb-8">
+      <div class="font-mono-dm text-[10px] tracking-[0.5em] uppercase text-gold/50 mb-4">Featured Dishes</div>
+      <h2 class="font-display text-[clamp(28px,5vw,44px)] font-medium mb-6"><span class="text-gradient-gold">A Taste of Maison</span></h2>
+      <div class="hr-gold w-16 mx-auto"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+
+      <div class="glass-light group hover:border-gold/15 transition-all duration-500 overflow-hidden anim-scale">
+        <div class="h-48 overflow-hidden">
+          <img src="images/menu/main-2.jpg" alt="Murgh Makhani" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.parentElement.innerHTML='<div style=\'height:100%;background:linear-gradient(135deg,#1a1c20,#131518);display:flex;align-items:center;justify-content:center;font-size:40px;\'>🍗</div>'"/>
+        </div>
+        <div class="p-5">
+          <div class="font-mono-dm text-[9px] tracking-[.3em] uppercase text-gold/40 mb-2">Signature Main</div>
+          <div class="font-display text-[16px] text-cream/85 mb-1">Murgh Makhani</div>
+          <div class="text-cream/25 text-xs mb-3">Rich tomato-butter gravy, cream</div>
+          <div class="font-mono-dm text-[13px] text-gold/70">₹ 920</div>
+        </div>
+      </div>
+
+      <div class="glass-light group hover:border-gold/15 transition-all duration-500 overflow-hidden anim-scale">
+        <div class="h-48 overflow-hidden">
+          <img src="images/menu/starter-1.jpg" alt="Galouti Kebab" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.parentElement.innerHTML='<div style=\'height:100%;background:linear-gradient(135deg,#1a1c20,#131518);display:flex;align-items:center;justify-content:center;font-size:40px;\'>🍙</div>'"/>
+        </div>
+        <div class="p-5">
+          <div class="font-mono-dm text-[9px] tracking-[.3em] uppercase text-gold/40 mb-2">Chef's Special Starter</div>
+          <div class="font-display text-[16px] text-cream/85 mb-1">Galouti Kebab</div>
+          <div class="text-cream/25 text-xs mb-3">Melt-in-mouth minced lamb</div>
+          <div class="font-mono-dm text-[13px] text-gold/70">₹ 780</div>
+        </div>
+      </div>
+
+      <div class="glass-light group hover:border-gold/15 transition-all duration-500 overflow-hidden anim-scale">
+        <div class="h-48 overflow-hidden">
+          <img src="images/menu/main-5.jpg" alt="Hyderabadi Biryani" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.parentElement.innerHTML='<div style=\'height:100%;background:linear-gradient(135deg,#1a1c20,#131518);display:flex;align-items:center;justify-content:center;font-size:40px;\'>🍛</div>'"/>
+        </div>
+        <div class="p-5">
+          <div class="font-mono-dm text-[9px] tracking-[.3em] uppercase text-gold/40 mb-2">Grill & Tandoor</div>
+          <div class="font-display text-[16px] text-cream/85 mb-1">Hyderabadi Biryani</div>
+          <div class="text-cream/25 text-xs mb-3">Slow-cooked mutton, saffron</div>
+          <div class="font-mono-dm text-[13px] text-gold/70">₹ 1,200</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center">
+      <a href="menu.html" class="inline-block px-10 py-4 font-mono-dm text-[11px] tracking-[.25em] uppercase border border-gold/30 text-gold/70 hover:border-gold hover:text-gold transition-all">View Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="relative border-y border-gold/[0.06] py-6 overflow-hidden">
+  <div class="absolute inset-0 noise"></div>
+  <div class="overflow-hidden whitespace-nowrap relative z-10">
+    <div class="inline-flex animate-ticker">
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Fine Dining <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Intimate Evenings <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Private Events <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Candlelit Tables <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Premium Wine <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Farm Fresh <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Fine Dining <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Intimate Evenings <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Private Events <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Candlelit Tables <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Premium Wine <span class="text-gold/20 text-[8px]">◆</span></span>
+      <span class="inline-flex items-center gap-3 px-10 font-display text-[15px] text-cream/15 italic">Farm Fresh <span class="text-gold/20 text-[8px]">◆</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery — Auto-scrolling carousel -->
+<section class="relative py-[clamp(48px,8vw,80px)]" id="gallery">
+  <div class="absolute inset-0 noise"></div>
+  <div class="relative z-10">
+    <div class="text-center mb-8 px-6 anim-up">
+      <div class="font-mono-dm text-[10px] tracking-[0.5em] uppercase text-gold/50 mb-4">Inside Maison</div>
+      <h2 class="font-display text-[clamp(28px,5vw,44px)] font-medium mb-6"><span class="text-gradient-gold">The Ambience</span></h2>
+      <div class="hr-gold w-16 mx-auto"></div>
+    </div>
+
+    <div class="relative" id="galleryCarousel" style="overflow:hidden;cursor:grab;user-select:none;">
+      <div class="flex gap-3" id="galleryTrack" style="width:max-content;">
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-1.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#1a1c20,#131518);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🏮</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Interior · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">A room that quietly holds every conversation, every laugh, every memory made within its walls</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-2.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#131518,#1a1c20);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🕯</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Dining Hall · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">Soft candlelight, golden cutlery, warm silence — the kind of evening you never want to end</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-3.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#1a1c20,#0a0b0d);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🍽️</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Table Setting · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">Every fork placed with intention, every glass polished with care — because the table is where life truly happens</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-4.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#131518,#1a1c20);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🔒</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Private Dining · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">A sanctuary within a sanctuary — for the celebrations, the proposals, the moments meant only for you</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-5.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#0a0b0d,#131518);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🌿</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Outdoor Terrace · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">Open skies, fresh air, and a plate that speaks the language of the season — stars above, flavours below</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-6.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#1a1c20,#131518);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🍷</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">The Lounge · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">Where the evening slows down, the glass stays full, and the conversation flows long after the last course</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <!-- Duplicates for seamless loop -->
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-1.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#1a1c20,#131518);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🏮</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Interior · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">A room that quietly holds every conversation, every laugh, every memory made within its walls</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-2.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#131518,#1a1c20);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🕯</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Dining Hall · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">Soft candlelight, golden cutlery, warm silence — the kind of evening you never want to end</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+        <div class="gallery-slide" style="width:92vw;max-width:560px;height:118vw;max-height:680px;flex-shrink:0;overflow:hidden;position:relative;">
+          <img src="images/gallery/gallery-3.jpg" class="w-full h-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#1a1c20,#0a0b0d);align-items:center;justify-content:center;font-size:52px;position:absolute;inset:0;">🍽️</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,0.85));"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.4em;text-transform:uppercase;color:rgba(196,154,60,0.5);margin-bottom:10px;">Table Setting · Maison</div>
+            <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:19px;line-height:1.45;color:rgba(242,237,216,0.92);">Every fork placed with intention, every glass polished with care — because the table is where life truly happens</div>
+            <div style="width:32px;height:1px;background:rgba(196,154,60,0.35);margin-top:14px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="position:absolute;top:0;left:0;bottom:0;width:clamp(8px,3vw,40px);background:linear-gradient(to right,#0a0b0d,transparent);pointer-events:none;z-index:2;"></div>
+    <div style="position:absolute;top:0;right:0;bottom:0;width:clamp(8px,3vw,40px);background:linear-gradient(to left,#0a0b0d,transparent);pointer-events:none;z-index:2;"></div>
+  </div>
+</section>
+
+<!-- Table Types -->
+<section class="relative py-[clamp(48px,8vw,80px)] px-6">
+  <div class="absolute inset-0" style="background:linear-gradient(180deg,transparent,rgba(26,28,32,0.4),transparent)"></div>
+  <div class="absolute inset-0 noise"></div>
+  <div class="max-w-[1100px] mx-auto relative z-10">
+    <div class="text-center mb-8">
+      <div class="font-mono-dm text-[10px] tracking-[0.5em] uppercase text-gold/50 mb-4">Choose Your Setting</div>
+      <h2 class="font-display text-[clamp(28px,5vw,44px)] font-medium mb-6"><span class="text-gradient-gold">Our Tables</span></h2>
+      <div class="hr-gold w-16 mx-auto"></div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="group overflow-hidden anim-left stagger-1" style="border:1px solid rgba(196,154,60,0.08);background:rgba(26,28,32,0.5);transition:all 0.4s;">
+        <div style="height:200px;overflow:hidden;position:relative;">
+          <img src="images/tables/window.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#131518,#1a1c20);align-items:center;justify-content:center;font-size:52px;">🪟</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));"></div>
+        </div>
+        <div class="p-6">
+          <div class="font-display text-lg text-cream/90 mb-1">Window</div>
+          <div class="font-mono-dm text-[10px] tracking-[0.2em] uppercase text-gold/40 mb-3">2 Seats</div>
+          <p class="text-cream/25 text-xs leading-relaxed mb-4">Natural light, street views. Perfect for a romantic lunch for two.</p>
+          <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:15px;color:rgba(196,154,60,0.65);line-height:1.5;">Where every morning feels like a first date</div>
+        </div>
+      </div>
+
+      <div class="group overflow-hidden anim-up stagger-2" style="border:1px solid rgba(196,154,60,0.08);background:rgba(26,28,32,0.5);transition:all 0.4s;">
+        <div style="height:200px;overflow:hidden;position:relative;">
+          <img src="images/tables/indoor.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#131518,#1a1c20);align-items:center;justify-content:center;font-size:52px;">🏠</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));"></div>
+        </div>
+        <div class="p-6">
+          <div class="font-display text-lg text-cream/90 mb-1">Indoor</div>
+          <div class="font-mono-dm text-[10px] tracking-[0.2em] uppercase text-gold/40 mb-3">2 – 6 Seats</div>
+          <p class="text-cream/25 text-xs leading-relaxed mb-4">Classic fine dining, warm lighting. Ideal for family & business dinners.</p>
+          <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:15px;color:rgba(196,154,60,0.65);line-height:1.5;">A warmth you carry long after the last bite</div>
+        </div>
+      </div>
+
+      <div class="group overflow-hidden anim-up stagger-3" style="border:1px solid rgba(196,154,60,0.08);background:rgba(26,28,32,0.5);transition:all 0.4s;">
+        <div style="height:200px;overflow:hidden;position:relative;">
+          <img src="images/tables/outdoor.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#131518,#1a1c20);align-items:center;justify-content:center;font-size:52px;">🌿</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));"></div>
+        </div>
+        <div class="p-6">
+          <div class="font-display text-lg text-cream/90 mb-1">Outdoor</div>
+          <div class="font-mono-dm text-[10px] tracking-[0.2em] uppercase text-gold/40 mb-3">2 – 4 Seats</div>
+          <p class="text-cream/25 text-xs leading-relaxed mb-4">Open air terrace, garden setting. Dining under the Ahmednagar sky.</p>
+          <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:15px;color:rgba(196,154,60,0.65);line-height:1.5;">Stars above, flavours below — nature sets the mood</div>
+        </div>
+      </div>
+
+      <div class="group overflow-hidden anim-right stagger-4" style="border:1px solid rgba(196,154,60,0.15);background:rgba(26,28,32,0.5);transition:all 0.4s;">
+        <div style="height:200px;overflow:hidden;position:relative;">
+          <img src="images/tables/private.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#131518,#1a1c20);align-items:center;justify-content:center;font-size:52px;">🔒</div>
+          <div style="position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,0.5));"></div>
+        </div>
+        <div class="p-6">
+          <div class="font-display text-lg text-cream/90 mb-1">Private</div>
+          <div class="font-mono-dm text-[10px] tracking-[0.2em] uppercase text-gold/40 mb-3">Up to 8 Seats</div>
+          <p class="text-cream/25 text-xs leading-relaxed mb-4">Exclusive enclosed room for celebrations. Complete privacy guaranteed.</p>
+          <div style="font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:15px;color:rgba(196,154,60,0.65);line-height:1.5;">Your world, your rules, your moment — forever yours</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Reviews -->
+<section class="relative py-[clamp(48px,8vw,80px)] px-6" id="reviews" style="background:linear-gradient(180deg,#0a0b0d 0%,#131518 40%,#1a1c20 60%,#0a0b0d 100%);">
+  <div class="absolute inset-0 noise"></div>
+  <div class="absolute inset-0" style="background:radial-gradient(ellipse at 50% 0%,rgba(196,154,60,0.05),transparent 60%)"></div>
+  <div class="max-w-[1000px] mx-auto relative z-10">
+
+    <!-- Header -->
+    <div class="text-center mb-8 anim-up">
+      <div class="font-mono-dm text-[10px] tracking-[0.5em] uppercase text-gold/50 mb-4">Guest Experiences</div>
+      <h2 class="font-display text-[clamp(28px,5vw,44px)] font-medium mb-6"><span class="text-gradient-gold">What Our Guests Say</span></h2>
+      <div class="hr-gold w-16 mx-auto"></div>
+    </div>
+
+    <!-- Rating overview -->
+    <div id="reviewsOverview" class="glass p-8 mb-10" style="display:none;">
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+        <!-- Big number -->
+        <div class="text-center shrink-0">
+          <div class="font-display text-[72px] leading-none text-gradient-gold font-medium" id="rvAvgBig">—</div>
+          <div id="rvStarsBig" class="text-2xl my-2" style="letter-spacing:4px;color:#c49a3c;"></div>
+          <div class="font-mono-dm text-[11px] text-cream/25" id="rvTotalLabel">0 reviews</div>
+          <!-- Category sub-averages -->
+          <div id="rvCatAvgs" style="display:none;justify-content:center;gap:0;margin-top:12px;border-top:1px solid rgba(196,154,60,0.08);padding-top:12px;"></div>
+        </div>
+        <!-- Breakdown bars -->
+        <div class="flex-1 w-full">
+          <div id="rvBreakdown"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review cards -->
+    <div id="reviewCards" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+    <!-- Empty state -->
+    <div id="reviewsEmpty" class="text-center py-16" style="display:none;">
+      <div class="font-display text-xl text-cream/20">No reviews yet</div>
+      <p class="text-cream/15 text-sm mt-2">Be the first to share your experience</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- CTA -->
+<section class="relative py-[clamp(80px,14vw,120px)] px-6 text-center">
+  <div class="absolute inset-0" style="background:radial-gradient(ellipse at 50% 50%,rgba(196,154,60,0.06),transparent 60%)"></div>
+  <div class="absolute inset-0 noise"></div>
+  <div class="relative z-10">
+    <div class="hr-gold w-12 mx-auto mb-8"></div>
+    <h2 class="font-display text-[clamp(28px,6vw,48px)] font-medium mb-4"><span class="text-gradient-gold">Join Us This Evening</span></h2>
+    <p class="text-cream/30 text-sm mb-10 tracking-wide font-light">Tuesday – Sunday · Lunch 12:00–15:00 · Dinner 19:00–23:00</p>
+    <a href="book.html" class="btn-premium">Make a Reservation</a>
+    <div class="mt-14 font-mono-dm text-[10px] tracking-[0.2em] text-cream/15 leading-8">
+      Savedi Road, Ahmednagar 414003<br/>+91 7972666151 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="187579716b7776797c75717628282f587f75797174367b7775">[email&#160;protected]</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="relative py-8 text-center overflow-hidden">
+  <div class="hr-gold mb-8"></div>
+  <div class="font-display text-sm tracking-[0.25em] text-gold/30 mb-2">MAISON</div>
+  <div class="font-mono-dm text-[10px] tracking-[0.2em] text-cream/20">© 2026 Maison Fine Dining · Ahmednagar</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Load reviews for homepage ─────────────────────────────────
+async function loadHomeReviews() {
+  try {
+    var _tk = localStorage.getItem('maison_token') || '';
+    var res  = await fetch(`${API}/get-reviews.php` + (_tk ? '?t=' + encodeURIComponent(_tk) : ''), {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({_token: _tk})
+    });
+    var data = await res.json();
+    if (!data.success) return;
+
+    var d = data.data;
+
+    // No reviews at all
+    if (d.total_all === 0) {
+      document.getElementById('reviewsOverview').style.display = '';
+      document.getElementById('reviewsOverview').innerHTML =
+        '<div style="text-align:center;padding:40px 20px;">' +
+          '<div style="font-size:40px;margin-bottom:16px;">✨</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:24px;color:rgba(242,237,216,0.5);margin-bottom:10px;">Every Visit Tells a Story</div>' +
+          '<p style="font-size:13px;color:rgba(242,237,216,0.2);line-height:1.8;max-width:480px;margin:0 auto 24px;">We pour our heart into every dish, every detail, every evening. Dine with us and let the world know how it felt.</p>' +
+          '<a href="book.html" style="display:inline-block;padding:13px 32px;font-size:10px;letter-spacing:.25em;text-transform:uppercase;font-family:\'Outfit\',sans-serif;font-weight:500;background:linear-gradient(135deg,#b8903a,#c9a24a);color:#0a0b0d;text-decoration:none;">Make a Reservation</a>' +
+        '</div>';
+      return;
+    }
+
+    // Show overview block
+    document.getElementById('reviewsOverview').style.display = '';
+    document.getElementById('rvAvgBig').textContent = d.average;
+    var fs = Math.round(d.average);
+    document.getElementById('rvStarsBig').textContent = '★'.repeat(fs) + '☆'.repeat(5 - fs);
+    document.getElementById('rvTotalLabel').textContent = d.total_all + ' review' + (d.total_all !== 1 ? 's' : '');
+
+    // Category sub-averages
+    var cats = [{key:'food',icon:'🍽️',label:'Food'},{key:'service',icon:'🤝',label:'Service'},{key:'ambience',icon:'✨',label:'Ambience'}];
+    var catHtml = '';
+    cats.forEach(function(c) {
+      var val = d.cat_avg && d.cat_avg[c.key] ? d.cat_avg[c.key] : null;
+      if (val) {
+        catHtml +=
+          '<div style="text-align:center;padding:0 12px;">' +
+            '<div style="font-size:18px;margin-bottom:3px;">' + c.icon + '</div>' +
+            '<div style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:#c49a3c;">' + val + '</div>' +
+            '<div style="font-family:\'JetBrains Mono\',monospace;font-size:9px;color:rgba(242,237,216,.2);text-transform:uppercase;letter-spacing:.1em;">' + c.label + '</div>' +
+          '</div>';
+      }
+    });
+    if (catHtml) {
+      document.getElementById('rvCatAvgs').innerHTML = catHtml;
+      document.getElementById('rvCatAvgs').style.display = 'flex';
+    }
+
+    // Breakdown bars
+    var bHtml = '';
+    for (var star = 5; star >= 1; star--) {
+      var pct = d.breakdown_pct[star] || 0;
+      var cnt = d.breakdown[star]     || 0;
+      bHtml +=
+        '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">' +
+          '<span style="font-family:\'JetBrains Mono\',monospace;font-size:11px;color:rgba(196,154,60,.5);width:8px;">' + star + '</span>' +
+          '<span style="color:#c49a3c;font-size:12px;">★</span>' +
+          '<div style="flex:1;height:6px;background:rgba(242,237,216,0.06);border-radius:3px;overflow:hidden;">' +
+            '<div style="height:100%;width:' + pct + '%;background:linear-gradient(90deg,#b8903a,#c9a24a);border-radius:3px;"></div>' +
+          '</div>' +
+          '<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:rgba(242,237,216,.2);width:24px;">' + cnt + '</span>' +
+        '</div>';
+    }
+    document.getElementById('rvBreakdown').innerHTML = bHtml;
+
+    // Build card
+    function buildCard(r, isPending) {
+      var stars = '';
+      for (var i = 1; i <= 5; i++) stars += '<span style="color:' + (i <= r.rating ? '#c49a3c' : 'rgba(196,154,60,0.12)') + ';">★</span>';
+      var initials = r.full_name.split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2);
+      var date = new Date(r.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      var badge = isPending
+        ? '<span style="font-size:10px;color:rgba(251,191,36,.6);font-family:\'JetBrains Mono\',monospace;">⏳ Awaiting approval</span>'
+        : '<span style="font-size:10px;color:rgba(196,154,60,.4);font-family:\'JetBrains Mono\',monospace;">✓ Verified Diner</span>';
+      var catMini = '';
+      if (r.food_rating || r.service_rating || r.ambience_rating) {
+        catMini = '<div style="display:flex;gap:12px;margin:8px 0;flex-wrap:wrap;">';
+        if (r.food_rating)     catMini += '<span style="font-size:11px;color:rgba(242,237,216,.3);">🍽️ ' + r.food_rating + '★</span>';
+        if (r.service_rating)  catMini += '<span style="font-size:11px;color:rgba(242,237,216,.3);">🤝 ' + r.service_rating + '★</span>';
+        if (r.ambience_rating) catMini += '<span style="font-size:11px;color:rgba(242,237,216,.3);">✨ ' + r.ambience_rating + '★</span>';
+        catMini += '</div>';
+      }
+      var occasions = {birthday:'🎂 Birthday',anniversary:'💍 Anniversary',business:'💼 Business',other:'✨ Special'};
+      var occLabel  = (r.occasion && r.occasion !== 'none' && occasions[r.occasion])
+        ? '<span style="font-size:11px;color:rgba(196,154,60,.3);margin-right:8px;">' + occasions[r.occasion] + '</span>'
+        : '';
+      var commentHtml = r.comment
+        ? '<p style="font-size:13px;color:' + (isPending?'rgba(242,237,216,.22)':'rgba(242,237,216,.35)') + ';line-height:1.7;margin:0 0 8px;font-style:italic;">\"' + r.comment + '\"</p>'
+        : '';
+      var border = isPending ? 'border:1px solid rgba(251,191,36,0.08);' : '';
+      return '<div class="glass-light p-6 transition-all duration-300" style="' + border + '">' +
+        '<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">' +
+          '<div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,rgba(196,154,60,.2),rgba(196,154,60,.06));display:flex;align-items:center;justify-content:center;font-family:\'Playfair Display\',serif;font-size:14px;color:#c49a3c;flex-shrink:0;">' + initials + '</div>' +
+          '<div style="flex:1;">' +
+            '<div style="font-family:\'Outfit\',sans-serif;font-size:14px;color:rgba(242,237,216,.85);font-weight:500;">' + r.full_name + (isPending ? ' <span style="font-size:11px;color:rgba(242,237,216,.25);">(You)</span>' : '') + '</div>' +
+            badge +
+          '</div>' +
+          '<div style="font-size:15px;letter-spacing:2px;flex-shrink:0;">' + stars + '</div>' +
+        '</div>' +
+        catMini + commentHtml +
+        '<div style="display:flex;align-items:center;gap:8px;">' +
+          occLabel +
+          '<span style="font-family:\'JetBrains Mono\',monospace;font-size:10px;color:rgba(242,237,216,.15);">' + date + '</span>' +
+        '</div>' +
+      '</div>';
+    }
+
+    var allCards = d.reviews.map(function(r){ return buildCard(r, false); });
+    if (d.my_pending && d.my_pending.length > 0) {
+      d.my_pending.forEach(function(r){ allCards.push(buildCard(r, true)); });
+    }
+
+    if (allCards.length === 0) {
+      document.getElementById('reviewCards').innerHTML =
+        '<div style="grid-column:1/-1;text-align:center;padding:40px 20px;border:1px solid rgba(196,154,60,0.06);background:rgba(26,28,32,0.3);">' +
+          '<div style="font-size:36px;margin-bottom:16px;">🕯</div>' +
+          '<div style="font-family:\'Playfair Display\',serif;font-size:20px;color:rgba(242,237,216,0.4);margin-bottom:10px;">Be the First to Share</div>' +
+          '<p style="font-size:13px;color:rgba(242,237,216,0.2);line-height:1.8;max-width:400px;margin:0 auto 20px;">Our guests\' stories make Maison what it is. Dine with us and share your experience.</p>' +
+          '<a href="book.html" style="display:inline-block;padding:12px 28px;font-size:10px;letter-spacing:.25em;text-transform:uppercase;font-family:\'Outfit\',sans-serif;font-weight:500;background:linear-gradient(135deg,#b8903a,#c9a24a);color:#0a0b0d;text-decoration:none;">Reserve a Table</a>' +
+        '</div>';
+    } else {
+      document.getElementById('reviewCards').innerHTML = allCards.join('');
+    }
+
+  } catch(e) { /* silently fail */ }
+}
+
+loadHomeReviews();
+
+// ── Animated counters ─────────────────────────────────────────
+function animateCounter(id, target, suffix, duration) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var start = 0;
+  var step  = target / (duration / 16);
+  var timer = setInterval(function() {
+    start += step;
+    if (start >= target) { el.textContent = target + suffix; clearInterval(timer); return; }
+    el.textContent = (Number.isInteger(target) ? Math.floor(start) : start.toFixed(1)) + suffix;
+  }, 16);
+}
+// stats section removed
+
+// ── Gallery auto-scroll + momentum touch carousel ────────────
+(function() {
+  var carousel = document.getElementById('galleryCarousel');
+  var track    = document.getElementById('galleryTrack');
+  if (!track || !carousel) return;
+
+  var autoSpeed = 0.35;
+  var pos       = 0;
+  var halfW     = 0;
+  var isDrag    = false;
+  var paused    = false;
+  var startX    = 0;
+  var startPos  = 0;
+  var lastX     = 0;
+  var lastT     = 0;
+  var vel       = 0;
+  var gliding   = false;
+
+  function getHalf() {
+    var slides = track.querySelectorAll('.gallery-slide');
+    var w = 0;
+    for (var i = 0; i < slides.length / 2; i++) w += slides[i].offsetWidth + 12;
+    return w;
+  }
+
+  function setPos(p) {
+    if (!halfW) halfW = getHalf();
+    if (p < 0) p += halfW;
+    if (p >= halfW) p -= halfW;
+    pos = p;
+    track.style.transform = 'translateX(-' + pos + 'px)';
+  }
+
+  function tick() {
+    if (gliding) {
+      vel *= 0.93;
+      setPos(pos + vel);
+      if (Math.abs(vel) < 0.25) {
+        gliding = false;
+        setTimeout(function(){ paused = false; }, 800);
+      }
+    } else if (!paused && !isDrag) {
+      setPos(pos + autoSpeed);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Mouse
+  carousel.addEventListener('mousedown', function(e) {
+    isDrag = true; gliding = false; paused = true;
+    startX = e.clientX; startPos = pos;
+    carousel.style.cursor = 'grabbing';
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!isDrag) return;
+    setPos(startPos - (e.clientX - startX));
+  });
+  window.addEventListener('mouseup', function() {
+    if (!isDrag) return;
+    isDrag = false;
+    carousel.style.cursor = 'grab';
+    setTimeout(function(){ paused = false; }, 800);
+  });
+
+  // Touch — track velocity for momentum
+  carousel.addEventListener('touchstart', function(e) {
+    isDrag = true; gliding = false; paused = true;
+    startX = e.touches[0].clientX; startPos = pos;
+    lastX  = startX; lastT = Date.now(); vel = 0;
+  }, {passive:true});
+
+  carousel.addEventListener('touchmove', function(e) {
+    if (!isDrag) return;
+    var now = Date.now();
+    var dx  = e.touches[0].clientX - lastX;
+    var dt  = now - lastT || 1;
+    vel     = -dx / dt * 14;   // scale to px/frame
+    lastX   = e.touches[0].clientX;
+    lastT   = now;
+    setPos(startPos - (e.touches[0].clientX - startX));
+  }, {passive:true});
+
+  carousel.addEventListener('touchend', function() {
+    isDrag = false;
+    if (Math.abs(vel) > 0.5) {
+      gliding = true;   // let momentum carry it
+    } else {
+      setTimeout(function(){ paused = false; }, 800);
+    }
+  }, {passive:true});
+
+  // Pause on desktop hover
+  carousel.addEventListener('mouseenter', function(){ if (!isDrag) paused = true; });
+  carousel.addEventListener('mouseleave', function(){ if (!isDrag && !gliding) paused = false; });
+
+  requestAnimationFrame(tick);
+})();
+
+// ── Scroll-triggered animations ──────────────────────────────
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('go');
+        observer.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+
+  document.querySelectorAll('.anim-left,.anim-right,.anim-scale,.anim-up').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Also fade up glass-light cards not already animated
+  document.querySelectorAll('.glass-light:not(.anim-up):not(.anim-left):not(.anim-right):not(.anim-scale)').forEach(function(el, i) {
+    el.classList.add('anim-up');
+    el.style.animationDelay = (i % 4) * 0.08 + 's';
+    observer.observe(el);
+  });
+})();
+
+</script>
+
+<script>
+(function initNav(){
+  var base=window.location.pathname.indexOf('/admin/')>-1?'../':'';
+  var token=localStorage.getItem('maison_token')||'';
+  var user=null;
+  try{user=JSON.parse(localStorage.getItem('maison_user'));}catch(e){}
+  var isAdmin=user&&user.role==='admin';
+  var page=window.location.pathname.split('/').pop()||'index.html';
+  function lnk(href,label,active){return '<a href="'+base+href+'" class="mn-link'+(active?' mn-active':'')+'" >'+label+'</a>';}
+    var desk=document.getElementById('mnLinks');
+  var mobAuth=document.getElementById('mnAuthMob');
+  var mobAdmin=document.getElementById('mnAdminMob');
+  if(!desk) return;
+  if(user&&token){
+    desk.innerHTML=
+      lnk('index.html','Home',page==='index.html')+
+      lnk('book.html','Reserve',page==='book.html')+
+      lnk('menu.html','Menu',page==='menu.html')+lnk('my-bookings.html','Bookings',page==='my-bookings.html')+lnk('profile.html','Profile',page==='profile.html')+lnk('about.html','About',page==='about.html')+
+      (isAdmin?lnk('admin/index.html','Admin',false):'')+
+      '<button onclick="mnSignOut()" class="mn-btn">Sign Out</button>';
+    if(mobAdmin&&isAdmin)mobAdmin.innerHTML='<a href="'+base+'admin/index.html" class="mn-mi mn-mi-gold">Admin Panel</a>';
+    if(mobAuth)mobAuth.innerHTML='<button onclick="mnSignOut()" class="mn-mi mn-mi-red">Sign Out</button>';
+  }else{
+    desk.innerHTML=
+      lnk('index.html','Home',page==='index.html')+
+      lnk('book.html','Reserve',page==='book.html')+
+      '<a href="'+base+'login.html" class="mn-btn">Sign In</a>';
+    if(mobAuth)mobAuth.innerHTML='<a href="'+base+'login.html" class="mn-mi mn-mi-gold">Sign In</a><a href="'+base+'register.html" class="mn-mi">Create Account</a>';
+  }
+  document.querySelectorAll('.mn-drawer a[href]').forEach(function(a){
+    var h=a.getAttribute('href');
+    if(h&&!h.startsWith('http')&&!h.startsWith(base)&&base)a.href=base+h;
+  });
+})();
+function mnToggle(){document.getElementById('mnHam').classList.toggle('open');document.getElementById('mnDrawer').classList.toggle('open');}
+document.addEventListener('click',function(e){var h=document.getElementById('mnHam'),d=document.getElementById('mnDrawer');if(h&&d&&!h.contains(e.target)&&!d.contains(e.target)){h.classList.remove('open');d.classList.remove('open');}});
+window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>10);});
+function mnSignOut(){localStorage.removeItem('maison_token');localStorage.removeItem('maison_user');window.location.href='index.html';}
+</script>
+</body>
+</html>
